@@ -177,14 +177,14 @@
   .chip { font-size:13px; padding:7px 14px; border-radius:999px; background:rgba(139,108,255,.12); border:1px solid rgba(139,108,255,.35); color:#C7B3FF; }
 
   /* Live sites */
-  .live-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:22px; max-width:900px; margin:0 auto; }
-  .live-card { display:block; background:var(--card); border:1px solid var(--line); border-radius:18px; overflow:hidden; transition:.2s; }
-  .live-card:hover { border-color:rgba(139,108,255,.55); transform:translateY(-3px); }
-  .live-shot { display:block; width:100%; aspect-ratio:16/10; object-fit:cover; object-position:top; border-bottom:1px solid var(--line); }
-  .live-meta { padding:20px 24px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
-  .live-meta .dom { font-weight:800; font-size:17px; }
-  .live-meta .kind { font-size:13.5px; color:var(--muted); margin-top:2px; }
-  .live-meta .go { color:var(--accent); font-weight:700; font-size:14px; white-space:nowrap; }
+  .live-label { text-align:center; font-size:13px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); font-weight:700; margin-bottom:26px; }
+  .live-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:22px; max-width:960px; margin:0 auto; }
+  .live-card { display:flex; align-items:center; gap:18px; background:var(--card); border:1px solid var(--line); border-radius:18px; padding:24px 28px; transition:.2s; }
+  .live-card:hover { border-color:rgba(139,108,255,.55); transform:translateY(-2px); }
+  .live-tile { width:58px; height:58px; border-radius:16px; flex-shrink:0; }
+  .live-card .dom { font-weight:800; font-size:18.5px; }
+  .live-card .kind { font-size:14px; color:var(--muted); margin-top:2px; }
+  .live-card .go { margin-left:auto; color:var(--accent); font-size:19px; }
 
   /* Contact modal */
   .modal-back { position:fixed; inset:0; z-index:100; background:rgba(5,6,10,.72); backdrop-filter:blur(6px); display:none; align-items:center; justify-content:center; padding:20px; }
@@ -286,25 +286,17 @@
 
 <section id="work">
   <div class="wrap">
-    <div class="sec-head">
-      <div class="kicker">Real Work, Live Now</div>
-      <h2>Live sites we've built.</h2>
-      <p>Not mockups — real businesses running on our builds today. Click through and see for yourself.</p>
-    </div>
+    <div class="live-label">Live Sites We've Built</div>
     <div class="live-grid">
       <a class="live-card" href="https://dimesvault.com" target="_blank" rel="noopener">
-        <img class="live-shot" src="/assets/dimesvault.webp" alt="Screenshot of dimesvault.com" loading="lazy" width="960" height="600">
-        <div class="live-meta">
-          <div><div class="dom">dimesvault.com</div><div class="kind">Publishing &amp; subscriber platform</div></div>
-          <span class="go">Visit ↗</span>
-        </div>
+        <img class="live-tile" src="/assets/dv-tile.png" alt="Dimesvault logo" loading="lazy" width="116" height="116">
+        <div><div class="dom">dimesvault.com</div><div class="kind">Publishing &amp; subscriber platform</div></div>
+        <span class="go">↗</span>
       </a>
       <a class="live-card" href="https://altamarclothing.com" target="_blank" rel="noopener">
-        <img class="live-shot" src="/assets/altamarclothing.webp" alt="Screenshot of altamarclothing.com" loading="lazy" width="960" height="600">
-        <div class="live-meta">
-          <div><div class="dom">altamarclothing.com</div><div class="kind">E-commerce storefront</div></div>
-          <span class="go">Visit ↗</span>
-        </div>
+        <img class="live-tile" src="/assets/altamar-tile.png" alt="Altamar logo" loading="lazy" width="116" height="116">
+        <div><div class="dom">altamarclothing.com</div><div class="kind">E-commerce storefront</div></div>
+        <span class="go">↗</span>
       </a>
     </div>
   </div>
