@@ -12,7 +12,12 @@
 <meta property="og:title" content="AI Site Sprint — Custom AI-Built Websites in 3–7 Days">
 <meta property="og:description" content="Agency-grade custom websites built with AI speed. Flat-rate pricing from $2,250. Live in 3–7 days. You own everything.">
 <meta property="og:image" content="https://www.aisitesprint.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="twitter:title" content="AI Site Sprint — Custom AI-Built Websites in 3–7 Days">
 <meta name="twitter:description" content="Agency-grade custom websites built with AI speed. Flat-rate pricing from $2,250. Live in 3–7 days. You own everything.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -89,8 +94,8 @@
   /* Nav */
   nav { position:sticky; top:0; z-index:50; background:rgba(11,12,14,.85); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); }
   .nav-in { display:flex; align-items:center; justify-content:space-between; height:68px; }
-  .logo { font-weight:800; font-size:19px; }
-  .logo span { color:var(--accent); }
+  .logo { font-weight:800; font-size:19px; display:inline-flex; align-items:center; gap:10px; }
+  .logo svg { display:block; }
   .nav-links { display:flex; gap:28px; align-items:center; font-size:14.5px; color:var(--muted); }
   .nav-links a:hover { color:#fff; }
   .btn { display:inline-block; padding:13px 26px; border-radius:12px; font-weight:700; font-size:15px; transition:.2s; cursor:pointer; border:none; }
@@ -171,6 +176,42 @@
   .chips { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
   .chip { font-size:13px; padding:7px 14px; border-radius:999px; background:rgba(139,108,255,.12); border:1px solid rgba(139,108,255,.35); color:#C7B3FF; }
 
+  /* Live sites */
+  .live-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:22px; max-width:900px; margin:0 auto; }
+  .live-card { display:block; background:var(--card); border:1px solid var(--line); border-radius:18px; overflow:hidden; transition:.2s; }
+  .live-card:hover { border-color:rgba(139,108,255,.55); transform:translateY(-3px); }
+  .live-shot { display:block; width:100%; aspect-ratio:16/10; object-fit:cover; object-position:top; border-bottom:1px solid var(--line); }
+  .live-meta { padding:20px 24px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+  .live-meta .dom { font-weight:800; font-size:17px; }
+  .live-meta .kind { font-size:13.5px; color:var(--muted); margin-top:2px; }
+  .live-meta .go { color:var(--accent); font-weight:700; font-size:14px; white-space:nowrap; }
+
+  /* Contact modal */
+  .modal-back { position:fixed; inset:0; z-index:100; background:rgba(5,6,10,.72); backdrop-filter:blur(6px); display:none; align-items:center; justify-content:center; padding:20px; }
+  .modal-back.open { display:flex; }
+  .modal { background:#121218; border:1px solid rgba(139,108,255,.35); border-radius:20px; padding:34px 30px; width:100%; max-width:480px; max-height:90vh; overflow:auto; box-shadow:0 0 60px rgba(139,108,255,.25); }
+  .modal h3 { font-size:22px; margin-bottom:4px; }
+  .modal .sub { font-size:14px; color:var(--muted); margin-bottom:22px; }
+  .modal-x { float:right; background:none; border:none; color:var(--muted); font-size:22px; cursor:pointer; line-height:1; padding:4px; }
+  .modal-x:hover { color:#fff; }
+  .field { margin-bottom:14px; }
+  .field label { display:block; font-size:13.5px; font-weight:600; color:#CBD5E1; margin-bottom:6px; }
+  .field input, .field select, .field textarea { width:100%; background:rgba(255,255,255,.05); border:1px solid var(--line); border-radius:10px; padding:12px 14px; color:#fff; font-family:inherit; font-size:15px; }
+  .field input:focus, .field select:focus, .field textarea:focus { outline:none; border-color:var(--accent); }
+  .field textarea { resize:vertical; min-height:90px; }
+  .hp-field { position:absolute; left:-9999px; opacity:0; pointer-events:none; }
+  .modal .btn { width:100%; text-align:center; margin-top:6px; }
+  .form-hint { font-size:13px; color:#6B7280; margin-top:12px; text-align:center; }
+  .form-hint.err { color:#E07B7B; }
+  .modal-alt { text-align:center; font-size:14px; color:var(--muted); margin-top:16px; }
+  .modal-alt a { color:var(--accent); font-weight:600; }
+  .modal-ok { text-align:center; padding:28px 0 12px; display:none; }
+  .modal-ok .big { font-size:44px; margin-bottom:12px; }
+
+  /* Copy toast */
+  .toast { position:fixed; bottom:28px; left:50%; transform:translateX(-50%) translateY(80px); z-index:120; background:#1C1D26; border:1px solid rgba(139,108,255,.5); color:#fff; font-size:14px; font-weight:600; padding:12px 22px; border-radius:12px; transition:.3s; opacity:0; }
+  .toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
+
   /* FAQ */
   .faq { max-width:760px; margin:0 auto; }
   .faq details { background:var(--card); border:1px solid var(--line); border-radius:14px; margin-bottom:12px; padding:20px 24px; }
@@ -196,8 +237,9 @@
 
 <nav>
   <div class="wrap nav-in">
-    <a href="#" class="logo">AI Site <span>Sprint</span></a>
+    <a href="#" class="logo"><svg width="30" height="30" viewBox="0 0 512 512" aria-hidden="true"><defs><linearGradient id="lgn" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6C5CE7"/><stop offset="1" stop-color="#A29BFE"/></linearGradient></defs><rect width="512" height="512" rx="154" fill="url(#lgn)"/><path d="M172 160 L268 256 L172 352" stroke="rgba(255,255,255,.55)" stroke-width="46" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M256 160 L352 256 L256 352" stroke="#FFFFFF" stroke-width="46" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>AI Site <span style="color:var(--accent)">Sprint</span></span></a>
     <div class="nav-links">
+      <a href="#work">Work</a>
       <a href="#pricing">Pricing</a>
       <a href="#industries">Industries</a>
       <a href="#faq">FAQ</a>
@@ -242,7 +284,33 @@
   </div>
 </section>
 
-<section id="pricing">
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">Real Work, Live Now</div>
+      <h2>Live sites we've built.</h2>
+      <p>Not mockups — real businesses running on our builds today. Click through and see for yourself.</p>
+    </div>
+    <div class="live-grid">
+      <a class="live-card" href="https://dimesvault.com" target="_blank" rel="noopener">
+        <img class="live-shot" src="/assets/dimesvault.webp" alt="Screenshot of dimesvault.com" loading="lazy" width="960" height="600">
+        <div class="live-meta">
+          <div><div class="dom">dimesvault.com</div><div class="kind">Publishing &amp; subscriber platform</div></div>
+          <span class="go">Visit ↗</span>
+        </div>
+      </a>
+      <a class="live-card" href="https://altamarclothing.com" target="_blank" rel="noopener">
+        <img class="live-shot" src="/assets/altamarclothing.webp" alt="Screenshot of altamarclothing.com" loading="lazy" width="960" height="600">
+        <div class="live-meta">
+          <div><div class="dom">altamarclothing.com</div><div class="kind">E-commerce storefront</div></div>
+          <span class="go">Visit ↗</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head">
       <div class="kicker">Pricing &amp; Complexity Tiers</div>
@@ -385,8 +453,8 @@
   <div class="wrap">
     <h2 style="font-size:clamp(26px,3.4vw,38px);font-weight:800;max-width:700px;margin:0 auto 14px">Ready to upgrade your web presence without the agency tax?</h2>
     <p class="muted" style="max-width:520px;margin:0 auto 30px">Tell us about your business. Get a scoped quote and launch date within 24 hours.</p>
-    <a href="#book" class="btn btn-primary">Start Your Project</a>
-    <p class="muted" style="margin-top:18px;font-size:14px">Or email us: <a href="mailto:team@dimesvault.com" style="color:var(--accent)">team@dimesvault.com</a></p>
+    <button class="btn btn-primary" data-open-contact>Start Your Project</button>
+    <p class="muted" style="margin-top:18px;font-size:14px">Or email us: <a href="mailto:team@dimesvault.com" class="copy-email" style="color:var(--accent)">team@dimesvault.com</a></p>
   </div>
 </section>
 
@@ -397,10 +465,57 @@
       <a href="#pricing">Pricing</a>
       <a href="#industries">Industries</a>
       <a href="#faq">FAQ</a>
-      <a href="mailto:team@dimesvault.com">Contact</a>
+      <a href="#" data-open-contact>Contact</a>
     </div>
   </div>
 </footer>
+
+<div class="modal-back" id="contact-back" role="dialog" aria-modal="true" aria-labelledby="contact-title">
+  <div class="modal">
+    <button class="modal-x" id="contact-close" aria-label="Close">×</button>
+    <form id="contact-form" novalidate>
+      <h3 id="contact-title">Start your project</h3>
+      <p class="sub">Tell us about your business. We reply with a scoped quote and launch date within 24 hours.</p>
+      <div class="field">
+        <label for="cf-name">Your name</label>
+        <input id="cf-name" name="name" type="text" autocomplete="name" required maxlength="200">
+      </div>
+      <div class="field">
+        <label for="cf-email">Email</label>
+        <input id="cf-email" name="email" type="email" autocomplete="email" required maxlength="320">
+      </div>
+      <div class="field">
+        <label for="cf-tier">Interested tier</label>
+        <select id="cf-tier" name="tier">
+          <option>Not sure yet</option>
+          <option value="Bronze — $2,250">Bronze — Essential ($2,250)</option>
+          <option value="Silver — $3,450">Silver — Growth ($3,450)</option>
+          <option value="Gold — $5,450">Gold — Enterprise ($5,450)</option>
+          <option value="Maintenance plan">Monthly maintenance plan</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="cf-msg">About your business</label>
+        <textarea id="cf-msg" name="message" maxlength="5000" placeholder="What do you do, and what should the site accomplish?"></textarea>
+      </div>
+      <div class="hp-field" aria-hidden="true">
+        <label for="cf-company">Company</label>
+        <input id="cf-company" name="company" type="text" tabindex="-1" autocomplete="off">
+      </div>
+      <div id="turnstile-slot"></div>
+      <button type="submit" class="btn btn-primary" id="cf-submit">Send inquiry</button>
+      <p class="form-hint" id="cf-hint">No credit card required to request a proposal.</p>
+      <p class="modal-alt">Prefer to talk? <a href="#book" id="cf-book-link">Grab a time on the calendar</a></p>
+    </form>
+    <div class="modal-ok" id="contact-ok">
+      <div class="big">✓</div>
+      <h3>Inquiry sent!</h3>
+      <p class="sub" style="margin:8px 0 0">We'll reply within 24 hours with a scoped quote and launch date.<br>Want to skip ahead? <a href="#book" class="modal-alt-link" id="cf-ok-book" style="color:var(--accent);font-weight:600">Book your 15-min call now</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">Email copied to clipboard</div>
 
 <script>
 // ===== STRIPE PAYMENT LINKS — paste your links here when ready =====
@@ -415,6 +530,112 @@ document.querySelectorAll('.tier-cta').forEach(btn => {
   const link = STRIPE_LINKS[btn.dataset.tier];
   if (link) { btn.href = link; btn.target = '_blank'; btn.rel = 'noopener'; }
 });
+
+// ===== Contact modal =====
+// Optional Cloudflare Turnstile: paste your site key here (and set
+// TURNSTILE_SECRET_KEY in Vercel) to add a visible bot check to the form.
+const TURNSTILE_SITE_KEY = '';
+
+const back = document.getElementById('contact-back');
+const form = document.getElementById('contact-form');
+const okPane = document.getElementById('contact-ok');
+const hint = document.getElementById('cf-hint');
+const submitBtn = document.getElementById('cf-submit');
+const tierSelect = document.getElementById('cf-tier');
+let openedAt = 0, lastFocus = null, turnstileLoaded = false;
+
+function openContact(tier) {
+  openedAt = Date.now();
+  lastFocus = document.activeElement;
+  form.style.display = '';
+  okPane.style.display = 'none';
+  hint.textContent = 'No credit card required to request a proposal.';
+  hint.classList.remove('err');
+  if (tier) tierSelect.value = tier;
+  back.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('cf-name').focus();
+  if (TURNSTILE_SITE_KEY && !turnstileLoaded) {
+    turnstileLoaded = true;
+    const s = document.createElement('script');
+    s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+    s.async = true;
+    s.onload = () => turnstile.render('#turnstile-slot', { sitekey: TURNSTILE_SITE_KEY, theme: 'dark' });
+    document.head.appendChild(s);
+  }
+}
+function closeContact() {
+  back.classList.remove('open');
+  document.body.style.overflow = '';
+  if (lastFocus) lastFocus.focus();
+}
+document.querySelectorAll('[data-open-contact]').forEach(el =>
+  el.addEventListener('click', e => { e.preventDefault(); openContact(); }));
+document.getElementById('contact-close').addEventListener('click', closeContact);
+back.addEventListener('click', e => { if (e.target === back) closeContact(); });
+window.addEventListener('keydown', e => { if (e.key === 'Escape' && back.classList.contains('open')) closeContact(); });
+document.getElementById('cf-book-link').addEventListener('click', closeContact);
+if (location.hash === '#contact') openContact();
+document.getElementById('cf-ok-book').addEventListener('click', closeContact);
+
+// Tier buttons open the modal pre-selected (unless a Stripe link takes over)
+const TIER_VALUES = { bronze: 'Bronze — $2,250', silver: 'Silver — $3,450', gold: 'Gold — $5,450' };
+document.querySelectorAll('.tier-cta').forEach(btn => {
+  if (STRIPE_LINKS[btn.dataset.tier]) return;
+  btn.addEventListener('click', e => { e.preventDefault(); openContact(TIER_VALUES[btn.dataset.tier]); });
+});
+
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  const name = document.getElementById('cf-name').value;
+  const email = document.getElementById('cf-email').value;
+  if (!name.trim()) { hint.textContent = 'Please add your name.'; hint.classList.add('err'); return; }
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.trim())) { hint.textContent = 'Please enter a valid email so we can reply.'; hint.classList.add('err'); return; }
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending…';
+  hint.classList.remove('err');
+  hint.textContent = ' ';
+  try {
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name, email,
+        tier: tierSelect.value,
+        message: document.getElementById('cf-msg').value,
+        company: document.getElementById('cf-company').value,
+        elapsed: Date.now() - openedAt,
+        turnstileToken: (typeof turnstile !== 'undefined' && turnstile.getResponse ? turnstile.getResponse() : '') || ''
+      })
+    });
+    const data = await res.json().catch(() => ({}));
+    if (res.ok && data.ok !== false) {
+      form.style.display = 'none';
+      okPane.style.display = 'block';
+      form.reset();
+    } else {
+      hint.textContent = data.error || 'Something went wrong. Please email us at team@dimesvault.com.';
+      hint.classList.add('err');
+    }
+  } catch {
+    hint.textContent = 'Network error — please try again, or email team@dimesvault.com.';
+    hint.classList.add('err');
+  }
+  submitBtn.disabled = false;
+  submitBtn.textContent = 'Send inquiry';
+});
+
+// Email links: still open the mail app if one exists, but always copy the
+// address so the click "works" even on machines with no mail client.
+const toast = document.getElementById('toast');
+let toastTimer;
+document.querySelectorAll('a[href^="mailto:"]').forEach(a =>
+  a.addEventListener('click', () => {
+    navigator.clipboard && navigator.clipboard.writeText('team@dimesvault.com');
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2600);
+  }));
 
 // Marquee
 const industries = ['Healthcare','Real Estate','E-Commerce','SaaS','Legal','Hospitality','Local Services'];
